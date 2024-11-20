@@ -28,7 +28,7 @@ const styles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adiciona uma camada escura por cima da imagem
     color: 'white',
-    padding: '20px',
+    padding: '100px',
     textAlign: 'center',
     borderRadius: '10px',
   },
