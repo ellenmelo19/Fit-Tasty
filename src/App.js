@@ -33,3 +33,4 @@ function MainPage() {
 }
 
 export default App;
+

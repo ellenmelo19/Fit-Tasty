@@ -19,14 +19,14 @@ function SearchForm() {
   };
 
   return (
-    <section style={styles.container}>
+    <section id="search-form" style={styles.container}>
       <h3>Busque por receitas acessíveis para você!</h3>
       
       <div style={styles.singleInput}>
         <input
           type="text"
           placeholder="Nome da receita"
-          style={styles.input}
+          style={styles.inputSingle}
         />
       </div>
 
@@ -91,14 +91,22 @@ const styles = {
   container: { 
     padding: '20px', 
     backgroundColor: '#e8f5e9', 
-    maxWidth: '600px', 
-    margin: '0 auto', 
-    textAlign: 'center' 
+    maxWidth: '600px', // Largura máxima para centralizar
+    margin: '0 auto', // Centraliza o conteúdo
+    textAlign: 'center' // Centraliza o texto
   },
   singleInput: { 
     display: 'flex', 
     justifyContent: 'center', 
     marginBottom: '10px' 
+  },
+  inputSingle: { 
+    padding: '10px', 
+    borderRadius: '5px', 
+    border: '1px solid #ddd',
+    width: '100%',
+    maxWidth: '400px',  // Ajusta a largura máxima
+    boxSizing: 'border-box'  // Garante que o preenchimento seja incluído na largura total
   },
   inputGroup: { 
     display: 'flex', 
@@ -111,7 +119,7 @@ const styles = {
     borderRadius: '5px', 
     border: '1px solid #ddd', 
     marginBottom: '10px',
-    width: '80%' 
+    width: '100%' 
   },
   button: { 
     backgroundColor: '#66bb6a', 

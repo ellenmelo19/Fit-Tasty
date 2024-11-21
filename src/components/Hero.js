@@ -1,7 +1,12 @@
+// Hero.js
 import React from 'react';
-import backgroundImage from '../assets/background.jpg'; // Importa a imagem
+import backgroundImage from '../assets/background.jpg';
 
 function Hero() {
+  const scrollToSearchForm = () => {
+    document.getElementById('search-form').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section style={{ ...styles.hero, backgroundImage: `url(${backgroundImage})` }}>
       <div style={styles.overlay}>
@@ -9,7 +14,7 @@ function Hero() {
         <p style={styles.subtitle}>
           Descubra receitas saudáveis com ingredientes que você já tem em casa. Nutrição ao seu alcance!
         </p>
-        <button style={styles.button}>Experimente já</button>
+        <button onClick={scrollToSearchForm} style={styles.button}>Experimente já</button>
       </div>
     </section>
   );
@@ -21,12 +26,12 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundSize: 'cover', // Faz com que a imagem preencha o fundo
-    backgroundPosition: 'center', // Centraliza a imagem
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
     position: 'relative',
   },
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adiciona uma camada escura por cima da imagem
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     color: 'white',
     padding: '100px',
     textAlign: 'center',
@@ -36,7 +41,7 @@ const styles = {
     fontSize: '2.5em',
     fontWeight: 'bold',
     margin: '0 0 10px',
-    color: '#FFFFFF', // Cor clara para destaque
+    color: '#FFFFFF', 
   },
   subtitle: {
     fontSize: '1.2em',
