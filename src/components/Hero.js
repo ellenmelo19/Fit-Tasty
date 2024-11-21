@@ -36,6 +36,7 @@ const styles = {
     fontSize: '2.5em',
     fontWeight: 'bold',
     margin: '0 0 10px',
+    color: '#FFFFFF', // Cor clara para destaque
   },
   subtitle: {
     fontSize: '1.2em',

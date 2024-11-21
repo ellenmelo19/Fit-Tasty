@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import SearchForm from './components/SearchForm';
 import RecipeList from './components/RecipeList';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Features />
       <SearchForm />
       <RecipeList />
+      <Footer />
     </div>
   );
 }

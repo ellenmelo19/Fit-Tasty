@@ -21,12 +21,18 @@ function SearchForm() {
   return (
     <section style={styles.container}>
       <h3>Busque por receitas acessíveis para você!</h3>
-      <div style={styles.inputGroup}>
+      
+      <div style={styles.singleInput}>
         <input
           type="text"
           placeholder="Nome da receita"
           style={styles.input}
         />
+      </div>
+
+      <p style={styles.orText}>ou</p>
+
+      <div style={styles.inputGroup}>
         <input
           type="text"
           placeholder="Ingrediente"
@@ -38,6 +44,7 @@ function SearchForm() {
           Adicionar Ingrediente
         </button>
       </div>
+
       <ul style={styles.list}>
         {ingredients.map((item, index) => (
           <li key={index} style={styles.listItem}>
@@ -48,6 +55,7 @@ function SearchForm() {
           </li>
         ))}
       </ul>
+
       <div style={styles.sliderGroup}>
         <label>Caloria (kcal):</label>
         <input
@@ -60,6 +68,7 @@ function SearchForm() {
         />
         <span>{calories}</span>
       </div>
+
       <div style={styles.sliderGroup}>
         <label>Tempo de preparo (min):</label>
         <input
@@ -72,6 +81,7 @@ function SearchForm() {
         />
         <span>{prepTime}</span>
       </div>
+      
       <button style={styles.searchButton}>Buscar receitas</button>
     </section>
   );
@@ -81,19 +91,27 @@ const styles = {
   container: { 
     padding: '20px', 
     backgroundColor: '#e8f5e9', 
-    maxWidth: '600px', // Largura máxima para centralizar
-    margin: '0 auto' // Centraliza o conteúdo
+    maxWidth: '600px', 
+    margin: '0 auto', 
+    textAlign: 'center' 
+  },
+  singleInput: { 
+    display: 'flex', 
+    justifyContent: 'center', 
+    marginBottom: '10px' 
   },
   inputGroup: { 
     display: 'flex', 
     flexDirection: 'column', 
+    alignItems: 'center', 
     marginBottom: '10px' 
   },
   input: { 
     padding: '10px', 
     borderRadius: '5px', 
     border: '1px solid #ddd', 
-    marginBottom: '10px' 
+    marginBottom: '10px',
+    width: '80%' 
   },
   button: { 
     backgroundColor: '#66bb6a', 
@@ -137,6 +155,11 @@ const styles = {
     borderRadius: '5px', 
     cursor: 'pointer' 
   },
+  orText: { 
+    margin: '10px 0', 
+    fontSize: '16px', 
+    color: '#333' 
+  }
 };
 
 export default SearchForm;
