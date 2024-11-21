@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 function SearchForm() {
   const [ingredients, setIngredients] = useState([]);
   const [ingredient, setIngredient] = useState('');
+  const [calories, setCalories] = useState(61);
+  const [prepTime, setPrepTime] = useState(51);
 
   const addIngredient = () => {
     if (ingredient) {
@@ -11,10 +13,20 @@ function SearchForm() {
     }
   };
 
+  const removeIngredient = (index) => {
+    const newIngredients = ingredients.filter((_, i) => i !== index);
+    setIngredients(newIngredients);
+  };
+
   return (
     <section style={styles.container}>
       <h3>Busque por receitas acessíveis para você!</h3>
       <div style={styles.inputGroup}>
+        <input
+          type="text"
+          placeholder="Nome da receita"
+          style={styles.input}
+        />
         <input
           type="text"
           placeholder="Ingrediente"
@@ -28,19 +40,103 @@ function SearchForm() {
       </div>
       <ul style={styles.list}>
         {ingredients.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index} style={styles.listItem}>
+            {item}
+            <button onClick={() => removeIngredient(index)} style={styles.deleteButton}>
+              Remover
+            </button>
+          </li>
         ))}
       </ul>
+      <div style={styles.sliderGroup}>
+        <label>Caloria (kcal):</label>
+        <input
+          type="range"
+          min="30"
+          max="90"
+          value={calories}
+          onChange={(e) => setCalories(Number(e.target.value))}
+          style={styles.slider}
+        />
+        <span>{calories}</span>
+      </div>
+      <div style={styles.sliderGroup}>
+        <label>Tempo de preparo (min):</label>
+        <input
+          type="range"
+          min="30"
+          max="90"
+          value={prepTime}
+          onChange={(e) => setPrepTime(Number(e.target.value))}
+          style={styles.slider}
+        />
+        <span>{prepTime}</span>
+      </div>
+      <button style={styles.searchButton}>Buscar receitas</button>
     </section>
   );
 }
 
 const styles = {
-  container: { padding: '20px', backgroundColor: '#e8f5e9' },
-  inputGroup: { display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '10px' },
-  input: { flexGrow: 1, padding: '10px', borderRadius: '5px', border: '1px solid #ddd', marginRight: '10px' },
-  button: { backgroundColor: '#66bb6a', border: 'none', color: 'white', padding: '10px 20px', borderRadius: '5px' },
-  list: { marginTop: '10px', textAlign: 'left' },
+  container: { 
+    padding: '20px', 
+    backgroundColor: '#e8f5e9', 
+    maxWidth: '600px', // Largura máxima para centralizar
+    margin: '0 auto' // Centraliza o conteúdo
+  },
+  inputGroup: { 
+    display: 'flex', 
+    flexDirection: 'column', 
+    marginBottom: '10px' 
+  },
+  input: { 
+    padding: '10px', 
+    borderRadius: '5px', 
+    border: '1px solid #ddd', 
+    marginBottom: '10px' 
+  },
+  button: { 
+    backgroundColor: '#66bb6a', 
+    border: 'none', 
+    color: 'white', 
+    padding: '10px 20px', 
+    borderRadius: '5px', 
+    marginBottom: '10px' 
+  },
+  list: { 
+    marginTop: '10px', 
+    textAlign: 'left' 
+  },
+  listItem: { 
+    display: 'flex', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    marginBottom: '10px' 
+  },
+  deleteButton: { 
+    backgroundColor: 'red', 
+    color: 'white', 
+    border: 'none', 
+    borderRadius: '5px', 
+    padding: '5px' 
+  },
+  sliderGroup: { 
+    display: 'flex', 
+    alignItems: 'center', 
+    marginBottom: '10px' 
+  },
+  slider: { 
+    flexGrow: 1, 
+    margin: '0 10px' 
+  },
+  searchButton: { 
+    backgroundColor: '#4caf50', 
+    border: 'none', 
+    color: 'white', 
+    padding: '10px 20px', 
+    borderRadius: '5px', 
+    cursor: 'pointer' 
+  },
 };
 
 export default SearchForm;

@@ -30,11 +30,39 @@ const styles = {
     backgroundColor: '#4caf50',
     color: 'white',
   },
-  logo: { height: '40px' }, // Tamanho ajustável da imagem
-  //search: { ... },
- // input: { ... },
- // searchButton: { ... },
- // loginButton: { ... },
+  logo: { 
+    height: '40px' 
+  }, 
+  search: {
+    display: 'flex',
+    flexBasis: '50%', // Ocupa 50% da largura do header
+    marginLeft: '20px', 
+    marginRight: '20px', 
+  },
+  input: {
+    flexGrow: 1, 
+    padding: '10px',
+    borderRadius: '5px',
+    border: '1px solid #ddd',
+  },
+  searchButton: {
+    backgroundColor: '#ffffff', // Fundo branco
+    border: '1px solid #4caf50', // Borda verde
+    borderRadius: '5px',
+    padding: '10px',
+    marginLeft: '10px', 
+    cursor: 'pointer',
+    color: '#4caf50', // Texto verde
+  },
+  loginButton: {
+    backgroundColor: 'white',
+    border: 'none',
+    color: '#4caf50',
+    padding: '10px 20px',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
 };
+
 
 export default Header;
