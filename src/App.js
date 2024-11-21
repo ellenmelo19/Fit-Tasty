@@ -7,6 +7,7 @@ import RecipeList from './components/RecipeList';
 import SearchForm from './components/SearchForm';
 import Footer from './components/Footer';
 import Login from './components/Login';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
       </Routes>
     </Router>
   );
@@ -33,4 +35,3 @@ function MainPage() {
 }
 
 export default App;
-
