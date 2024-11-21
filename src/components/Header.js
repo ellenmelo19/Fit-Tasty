@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import headerLogo from '../assets/header-logo.jpg'; // Importa a imagem
+import headerLogo from '../assets/header-logo.jpg';
 
 function Header() {
   return (
     <header style={styles.header}>
-      <img src={headerLogo} alt="Logo" style={styles.logo} /> {/* Usa a imagem */}
+      <img src={headerLogo} alt="Logo" style={styles.logo} />
       <div style={styles.search}>
         <input
           type="text"
@@ -16,7 +17,9 @@ function Header() {
           <FaSearch />
         </button>
       </div>
-      <button style={styles.loginButton}>Login</button>
+      <Link to="/login" style={styles.loginButton}>
+        Login
+      </Link>
     </header>
   );
 }
@@ -30,29 +33,27 @@ const styles = {
     backgroundColor: '#4caf50',
     color: 'white',
   },
-  logo: { 
-    height: '40px' 
-  }, 
+  logo: { height: '40px' },
   search: {
     display: 'flex',
-    flexBasis: '50%', // Ocupa 50% da largura do header
-    marginLeft: '20px', 
-    marginRight: '20px', 
+    flexGrow: 1,
+    marginLeft: '20px',
+    marginRight: '20px',
   },
   input: {
-    flexGrow: 1, 
+    flexGrow: 1,
     padding: '10px',
     borderRadius: '5px',
     border: '1px solid #ddd',
   },
   searchButton: {
-    backgroundColor: '#ffffff', // Fundo branco
-    border: '1px solid #4caf50', // Borda verde
+    backgroundColor: 'white',
+    border: '1px solid #ddd',
     borderRadius: '5px',
     padding: '10px',
-    marginLeft: '10px', 
+    marginLeft: '10px',
     cursor: 'pointer',
-    color: '#4caf50', // Texto verde
+    color: '#4caf50',
   },
   loginButton: {
     backgroundColor: 'white',
@@ -61,8 +62,8 @@ const styles = {
     padding: '10px 20px',
     borderRadius: '5px',
     cursor: 'pointer',
+    textDecoration: 'none',
   },
 };
-
 
 export default Header;
