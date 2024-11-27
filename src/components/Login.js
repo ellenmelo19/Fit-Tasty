@@ -97,11 +97,6 @@ function Login({ onLogin }) {
               Esqueceu a senha?
             </button>
           )}
-          <div style={styles.socialLogin}>
-            <button style={styles.socialButton}>Facebook</button>
-            <button style={styles.socialButton}>Google</button>
-            <button style={styles.socialButton}>LinkedIn</button>
-          </div>
         </form>
         <p>{message}</p>
       </div>
@@ -115,7 +110,7 @@ const styles = {
     height: '100vh',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#ECF87F',
     flexDirection: 'row',
   },
   backButton: {
@@ -124,7 +119,7 @@ const styles = {
     right: '20px', 
     backgroundColor: 'transparent',
     border: 'none',
-    color: '#4caf50',
+    color: '#81B622',
     fontSize: '18px',
     cursor: 'pointer',
     display: 'flex',
@@ -132,8 +127,8 @@ const styles = {
     padding: '10px',
   },
   welcomeSection: {
-    backgroundColor: '#4caf50',
-    color: 'white',
+    backgroundColor: '#ECF87F',
+    color: '#3D550C',
     padding: '40px',
     textAlign: 'center',
     flex: 1,
@@ -178,7 +173,7 @@ const styles = {
     border: '1px solid #ddd',
   },
   loginButton: {
-    backgroundColor: '#4caf50',
+    backgroundColor: '#3D550C',
     color: 'white',
     padding: '10px',
     border: 'none',
@@ -187,16 +182,16 @@ const styles = {
     margin: '10px 0',
   },
   registerButton: {
-    backgroundColor: 'white',
-    color: '#4caf50',
+    backgroundColor: '#3D550C',
+    color: 'white',
     padding: '10px',
-    border: '1px solid white',
     borderRadius: '5px',
     cursor: 'pointer',
     margin: '10px 0',
   },
   forgotPassword: {
-    color: '#4caf50',
+    backgroundColor: 'white',
+    color: '#81B622',
     textAlign: 'center',
     margin: '10px 0',
   },
