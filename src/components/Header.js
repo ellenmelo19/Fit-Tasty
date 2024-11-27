@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import headerLogo from '../assets/header-logo.jpg';
 
-function Header() {
+function Header({ user }) {
   return (
     <header style={styles.header}>
       <img src={headerLogo} alt="Logo" style={styles.logo} />
@@ -17,9 +17,13 @@ function Header() {
           <FaSearch />
         </button>
       </div>
-      <Link to="/login" style={styles.loginButton}>
-        Login
-      </Link>
+      {user ? (
+        <span style={styles.userEmail}>{user.email}</span> // Exibe o email do usuário logado
+      ) : (
+        <Link to="/login" style={styles.loginButton}>
+          Login
+        </Link>
+      )}
     </header>
   );
 }
@@ -63,6 +67,10 @@ const styles = {
     borderRadius: '5px',
     cursor: 'pointer',
     textDecoration: 'none',
+  },
+  userEmail: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 };
 
