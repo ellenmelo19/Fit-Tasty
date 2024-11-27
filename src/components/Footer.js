@@ -3,11 +3,11 @@ import React from 'react';
 function Footer() {
   return (
     <footer style={styles.footer}>
-      <div style={styles.curtain}>
+      {/* <div style={styles.curtain}>
         <button style={styles.seeMoreButton}>
           <span>Veja mais</span>
         </button>
-      </div>
+      </div> */}
       <div style={styles.footerContent}>
         <div style={styles.footerSection}>
           <h4 style={styles.footerHeading}>Suporte</h4>
@@ -29,11 +29,12 @@ function Footer() {
 
 const styles = {
   footer: { 
-    backgroundColor: '#4caf50', 
-    color: 'white', 
+    backgroundColor: '#ECF87F', 
+    color: '#3D550C', 
     padding: '20px 0', 
     textAlign: 'center', 
     position: 'relative', 
+    fontWeight: 'bold'
   },
   curtain: { 
     position: 'absolute', 
@@ -62,13 +63,13 @@ const styles = {
     paddingTop: '20px',
   },
   footerSection: {
-    margin: '10px',
+    margin: '12px',
   },
   footerHeading: {
-    fontSize: '14px', // Fonte menor
+    fontSize: '16px', // Fonte menor
   },
   footerText: {
-    fontSize: '12px', // Fonte menor
+    fontSize: '14px', // Fonte menor
   },
 };
 

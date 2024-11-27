@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import RecipeList from './components/RecipeList';
-import SearchForm from './components/SearchForm';
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
+import Features from './components/Features/Features';
+import RecipeList from './components/RecipeList/RecipeList';
+import SearchForm from './components/SearchForm/SearchForm';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import RecipeDetails from './components/RecipeDetails';
+
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import bootstrap from 'booststrap'
 
 function App() {
   const [user, setUser] = useState(null); // Estado para armazenar o usuário logado

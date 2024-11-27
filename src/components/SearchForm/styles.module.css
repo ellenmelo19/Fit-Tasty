@@ -1,0 +1,137 @@
+.myContainer { 
+    padding: 20px;
+    background-color: #e8f5e9; 
+    max-width: 600px; /*Largura máxima para centralizar*/
+    margin: 0 auto;  /*Centraliza o conteúdo*/
+    text-align: center /*Centraliza o texto*/
+}
+
+.singleInput { 
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+
+    font-size: 18px;
+    color: #81B622;
+}
+
+.inputSingle { 
+    width: 100%;
+    padding: 2px 0; 
+    
+    border: none;
+    border-bottom: 2px solid #81B622;
+    max-width: 400px;  /*Ajusta a largura máxima*/
+    box-sizing: border-box;  /*Garante que o preenchimento seja incluído na largura total*/
+
+    font-size: 16px;
+    color: #92c239;
+
+    margin-bottom: 10px;
+}
+
+.inputSingle:focus { 
+    border: none;
+    border-bottom: 2px solid #73a31a;
+}
+
+.inputSingle:focus-visible { 
+    border: none;
+    border-bottom: 2px solid #73a31a;
+    outline: none;
+}
+
+.inputGroup { 
+    display: flex; 
+    flex-direction: column; 
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inputGroup .singleInput { 
+    
+    margin-bottom: 10px;
+}
+
+
+.input { 
+    padding: 10px; 
+    border-radius: 5px; 
+    border: 1px solid #ddd; 
+    margin-bottom: 10px;
+    width: 100% 
+}
+.button { 
+    background-color: #81B622; 
+    border: none; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    margin-bottom: 10px;
+}
+.list { 
+    margin-top: 10px; 
+    text-align: left 
+}
+.listItem { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px 
+}
+.deleteButton { 
+    background-color: red; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 5px 
+}
+.sliderGroup { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 10px 
+}
+
+.sliderGroup label { 
+    color: #81B622
+}
+
+.slider { 
+    flex-grow: 1; 
+    margin: 0 10px;
+
+    accent-color: #81B622;
+}
+.searchButton { 
+    background-color: #81B622; 
+    border: none; 
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer 
+}
+.orText { 
+    margin: 10px 0; 
+    font-size: 16px; 
+    color: #333 
+}
+
+.recipeSearch{
+    min-height: 100px;
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+    border: none;
+    
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    color: #81B622;
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 2.3em;
+}
