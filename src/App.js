@@ -16,12 +16,16 @@ function App() {
     setUser(userData); // Atualiza o estado com os dados do usuário
   };
 
+  const handleLogout = () => {
+    setUser(null); // Limpa o estado do usuário para realizar o logout
+  };
+
   return (
     <Router>
       <Routes>
         <Route
           path="/"
-          element={<MainPage user={user} />}
+          element={<MainPage user={user} onLogout={handleLogout} />} // Passando onLogout como prop
         />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
@@ -30,10 +34,10 @@ function App() {
   );
 }
 
-function MainPage({ user }) {
+function MainPage({ user, onLogout }) {
   return (
     <div>
-      <Header user={user} />
+      <Header user={user} onLogout={onLogout} /> {/* Passando onLogout */}
       <Hero />
       <Features />
       <SearchForm />

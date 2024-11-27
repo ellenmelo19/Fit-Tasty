@@ -103,7 +103,7 @@ function Login({ onLogin }) {
             <button style={styles.socialButton}>LinkedIn</button>
           </div>
         </form>
-        {message && <p style={styles.message}>{message}</p>}
+        <p>{message}</p>
       </div>
     </div>
   );
@@ -119,9 +119,9 @@ const styles = {
     flexDirection: 'row',
   },
   backButton: {
-    position: 'absolute', // Posiciona o botão em relação ao container
-    top: '20px', // Distância do topo
-    right: '20px', // Distância da direita
+    position: 'absolute', 
+    top: '20px', 
+    right: '20px', 
     backgroundColor: 'transparent',
     border: 'none',
     color: '#4caf50',
@@ -216,6 +216,30 @@ const styles = {
   message: {
     marginTop: '20px',
     color: '#4caf50',
+  },
+  loggedIn: {
+    textAlign: 'center',
+  },
+  dropdownButton: {
+    backgroundColor: '#4caf50',
+    color: 'white',
+    padding: '10px',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    marginTop: '10px',
+  },
+  subMenu: {
+    marginTop: '10px',
+    textAlign: 'center',
+  },
+  logoutButton: {
+    backgroundColor: '#f44336',
+    color: 'white',
+    padding: '10px',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
   },
 };
 

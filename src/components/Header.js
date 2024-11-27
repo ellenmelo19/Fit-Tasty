@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import headerLogo from '../assets/header-logo.jpg';
 
-function Header({ user }) {
+function Header({ user, onLogout }) {
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleLogout = () => {
+    if (onLogout) {
+      onLogout(); // Chama a função onLogout passada como prop
+    }
+  };
+
   return (
     <header style={styles.header}>
       <img src={headerLogo} alt="Logo" style={styles.logo} />
@@ -18,7 +26,21 @@ function Header({ user }) {
         </button>
       </div>
       {user ? (
-        <span style={styles.userEmail}>{user.email}</span> // Exibe o email do usuário logado
+        <div style={styles.userSection}>
+          <span 
+            style={styles.userEmail}
+            onClick={() => setDropdownVisible(!isDropdownVisible)} // Toggle dropdown
+          >
+            {user.email}
+          </span>
+          {isDropdownVisible && (
+            <div style={styles.dropdownMenu}>
+              <button onClick={handleLogout} style={styles.logoutButton}>
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
       ) : (
         <Link to="/login" style={styles.loginButton}>
           Login
@@ -71,6 +93,25 @@ const styles = {
   userEmail: {
     color: 'white',
     fontWeight: 'bold',
+    cursor: 'pointer',
+  },
+  dropdownMenu: {
+    position: 'absolute',
+    top: '40px',
+    right: '10px',
+    backgroundColor: 'white',
+    borderRadius: '5px',
+    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    zIndex: 1,
+  },
+  logoutButton: {
+    backgroundColor: 'white',
+    color: '#4caf50',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    width: '100%',
   },
 };
 
