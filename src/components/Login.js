@@ -6,11 +6,13 @@ function Login({ onLogin }) {
   const [isRegistering, setIsRegistering] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState(''); 
+  const [firstName, setFirstName] = useState(''); 
+  const [lastName, setLastName] = useState(''); 
   const [message, setMessage] = useState('');
 
-  const navigate = useNavigate(); // Hook para redirecionar
+  const navigate = useNavigate();
 
-  // Dados de login mockados
   const mockUsers = [
     { email: 'itamir@ufrn.edu.br', password: 'senha123', avatar: 'https://example.com/avatar1.jpg' },
     { email: 'marquinhos@ufr.edu.br', password: 'abc123', avatar: 'https://example.com/avatar2.jpg' },
@@ -26,17 +28,26 @@ function Login({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isRegistering) {
+      if (password !== confirmPassword) {
+        setMessage('As senhas não coincidem.');
+        return;
+      }
+      // Registro bem-sucedido
       setMessage('Registro realizado com sucesso!');
+      setTimeout(() => {
+        navigate('/'); // Redireciona para a tela principal
+      }, 1000);
+      
     } else {
       const user = mockUsers.find(
         (user) => user.email === email && user.password === password
       );
       if (user) {
         setMessage('Login realizado com sucesso!');
-        onLogin(user); // Passa os dados do usuário logado para o App.js
+        onLogin(user);
         setTimeout(() => {
-          navigate('/'); // Redireciona para a tela inicial
-        }, 1000); // Pequeno delay para mostrar a mensagem antes de redirecionar
+          navigate('/');
+        }, 1000);
       } else {
         setMessage('Email ou senha inválidos.');
       }
@@ -44,7 +55,7 @@ function Login({ onLogin }) {
   };
 
   const handleGoBack = () => {
-    navigate('/'); // Volta para a página inicial
+    navigate('/');
   };
 
   return (
@@ -63,12 +74,32 @@ function Login({ onLogin }) {
           onClick={toggleRegister}
           style={isRegistering ? styles.loginButton : styles.registerButton}
         >
-          {isRegistering ? 'Entrar' : 'Registrar-se'}
+          {isRegistering ? 'Entrar' : 'Cadastre-se'}
         </button>
       </div>
       <div style={isRegistering ? styles.registerSection : styles.loginSection}>
-        <h2>{isRegistering ? 'Registrar' : 'Login'}</h2>
+        <h2>{isRegistering ? 'Cadastre-se' : 'Login'}</h2>
         <form style={styles.form} onSubmit={handleSubmit}>
+          {isRegistering && (
+            <>
+              <input
+                type="text"
+                placeholder="Nome"
+                style={styles.input}
+                required
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Sobrenome"
+                style={styles.input}
+                required
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </>
+          )}
           <input
             type="email"
             placeholder="Email"
@@ -85,8 +116,18 @@ function Login({ onLogin }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {isRegistering && (
+            <input
+              type="password"
+              placeholder="Confirmar Senha"
+              style={styles.input}
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          )}
           <button type="submit" style={styles.loginButton}>
-            {isRegistering ? 'Registrar-se' : 'Entrar'}
+            {isRegistering ? 'Cadastre-se' : 'Entrar'}
           </button>
           {!isRegistering && (
             <button
@@ -108,6 +149,7 @@ function Login({ onLogin }) {
     </div>
   );
 }
+
 
 const styles = {
   container: {
@@ -196,7 +238,7 @@ const styles = {
     margin: '10px 0',
   },
   forgotPassword: {
-    color: '#4caf50',
+    color: 'white',
     textAlign: 'center',
     margin: '10px 0',
   },

@@ -1,10 +1,34 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SearchForm() {
   const [ingredients, setIngredients] = useState([]);
   const [ingredient, setIngredient] = useState('');
   const [calories, setCalories] = useState(61);
   const [prepTime, setPrepTime] = useState(51);
+  const [recipeName, setRecipeName] = useState('');
+  const navigate = useNavigate();
+
+  const recipes = [
+    { id: 1, title: 'Mingau de Aveia Proteico' },
+    { id: 2, title: 'Mousse de Abacaxi Fit' },
+    { id: 3, title: 'Tapioca Recheada com Frango' },
+    { id: 4, title: 'Mousse de Maracujá Fit' },
+    { id: 5, title: 'Bolo de Caneca Sem Leite' },
+    { id: 6, title: 'Pudim de Chia' },
+  ];
+
+  const handleSearch = () => {
+    const recipe = recipes.find((r) =>
+      r.title.toLowerCase().includes(recipeName.toLowerCase())
+    );
+
+    if (recipe) {
+      navigate(`/recipe/${recipe.id}`);
+    } else {
+      alert('Receita não encontrada!');
+    }
+  };
 
   const addIngredient = () => {
     if (ingredient) {
@@ -21,11 +45,13 @@ function SearchForm() {
   return (
     <section id="search-form" style={styles.container}>
       <h3>Busque por receitas acessíveis para você!</h3>
-      
+
       <div style={styles.singleInput}>
         <input
           type="text"
           placeholder="Nome da receita"
+          value={recipeName}
+          onChange={(e) => setRecipeName(e.target.value)}
           style={styles.inputSingle}
         />
       </div>
@@ -81,8 +107,10 @@ function SearchForm() {
         />
         <span>{prepTime}</span>
       </div>
-      
-      <button style={styles.searchButton}>Buscar receitas</button>
+
+      <button onClick={handleSearch} style={styles.searchButton}>
+        Buscar receitas
+      </button>
     </section>
   );
 }
