@@ -5,9 +5,11 @@ import Hero from './components/Hero/Hero';
 import Features from './components/Features/Features';
 import RecipeList from './components/RecipeList/RecipeList';
 import SearchForm from './components/SearchForm/SearchForm';
-import Footer from './components/Footer';
-import Login from './components/Login';
+import Footer from './components/Footer/Footer';
+import Login from './components/Login/Login';
 import RecipeDetails from './components/RecipeDetails';
+import NutricionistsComponent from './components/NutricionistsComponent/NutricionistsComponent';
+import AddRecipeComponent from './components/AddRecipeComponent/AddRecipeComponent';
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -32,6 +34,7 @@ function App() {
           element={<MainPage user={user} onLogout={handleLogout} />} // Passando onLogout como prop
         />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/addrecipe" element={<AddRecipeComponent/>} />
         <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
       </Routes>
     </Router>
@@ -39,13 +42,22 @@ function App() {
 }
 
 function MainPage({ user, onLogout }) {
+  const [recipeSearchResult, setRecipeSearchResult] = useState([])
+  const [isSearching, setIsSearching] = useState(false)
+
   return (
     <div>
       <Header user={user} onLogout={onLogout} /> {/* Passando onLogout */}
       <Hero />
-      <Features />
-      <SearchForm />
-      <RecipeList />
+      <SearchForm 
+        setRecipeSearchResult={setRecipeSearchResult}
+        setIsSearching={setIsSearching}
+      />
+      <RecipeList 
+        recipeSearchResult={recipeSearchResult}
+        isSearching={isSearching}
+      />
+      <NutricionistsComponent/>
       <Footer />
     </div>
   );

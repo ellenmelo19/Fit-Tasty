@@ -17,27 +17,38 @@
 }
 
 .title {
-    font-size: 4em;
+    font-size: 2em;
     font-weight: bold;
     margin: 0 0 10px;
-    color: #ECF87F; 
+    color: #FCFDFB; 
 }
 
 .subtitle {
-    font-size: 1.5em;
+    font-size: 1.3em;
+
     margin: 0 0 20px;
 }
 
 .button {
-    background-color: #ECF87F;
-    padding: 10px 20px;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0 0 0 0.3);
-    border-radius: 5px;
-    color: #3D550C;
+    background-color: #61AB4A;
     
+    color: #FCFDFB;
     font-size: 1.2em;
     font-weight: bold;
 
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 0 0 16px 4px rgba(2, 4, 2, 0.25);
+    border-radius: 5px;
+    
     cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.button:hover {
+    background-color: #4f9639;
+}
+
+.button:active {
+    background-color: #42862e;
 }

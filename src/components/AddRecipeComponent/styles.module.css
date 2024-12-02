@@ -1,0 +1,160 @@
+.addRecipePage{
+    height: calc(100vh - 91px - 123px);
+}
+
+.title {
+    color: #020402;
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.new_input_container{
+    width: fit-content;
+    
+    margin-top: -12px;
+    margin-bottom: 32px;
+}
+
+.new_input_header{
+    position: relative;
+    top: 12px;
+    left: 8px;
+
+    width: fit-content;
+    background-color: #FCFDFB;
+
+    font-weight: light;
+    font-size: .8em;
+}
+
+.new_input{
+    display: flex;
+
+    padding: 8px 8px ;
+    border: 1px solid #020402;
+    border-radius: 8px;
+
+    min-width: 516px;
+    max-width: fit-content;
+}
+
+.new_input_small{
+    min-width: 172px;
+    margin-right: 16px;
+}
+
+.new_input>form{
+    all: unset;
+}
+
+.new_input>form>*{
+    all: unset;
+}
+
+.new_input>input{
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.new_input>input:focus{
+    /* border: 2px solid #020402; */
+    outline: none;
+}
+
+.new_input>input:focus-visible{
+    /* border: 2px solid #020402; */
+    outline: none;
+}
+
+.new_input_add_button{
+    position: relative;
+    right: 14px;
+    
+    width: 0;
+}
+
+.new_input_add_button>button{
+    background-color: #61AB4A;
+
+    color: #FCFDFB;
+    font-size: 2em;
+    font-weight: bolder;
+
+    line-height: 0;
+    padding: 22px 12px;
+
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px rgba(2, 4, 2, 0.25);
+
+    transition: 0.2s ease-in-out;
+}
+
+.new_input_add_button>button:hover{
+    background-color: #4f9639;
+}
+
+.new_input_add_button>button:active{
+    background-color: #42862e;
+}
+
+.added_ingredients_header{
+    font-size: 0.8;
+    margin-bottom: 12px;
+}
+
+.added_ingredients{
+    display: flex;
+    flex-direction: row;
+}
+
+.added_ingredients_item{
+    background-color: #A9D49B;
+    border-radius: 8px;
+
+    color: #020402;
+    font-size: 0.8em;
+    font-weight: light;
+
+    padding: 8px 16px;
+    margin-right: 12px;
+
+    cursor: pointer;
+}
+
+.added_ingredients_item:hover{
+    background-color: #BA5B5B;
+    color: #FCFDFB;
+}
+
+.added_ingredients_empty{
+    font-weight: lighter;
+    font-style: italic;
+    margin: 0;
+}
+
+.addRecipesButton{
+    background-color: #61AB4A;
+
+    color: #FCFDFB;
+    font-size: 1em;
+
+    padding: 12px 16px;
+
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px rgba(2, 4, 2, 0.25);
+
+    transition: 0.2s ease-in-out;
+}
+
+.addRecipesButton:hover{
+    background-color: #4f9639;
+}
+
+.addRecipesButton:active{
+    background-color: #42862e;
+}

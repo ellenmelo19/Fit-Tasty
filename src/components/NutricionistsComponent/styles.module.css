@@ -1,0 +1,45 @@
+.nutricionists{
+    margin-bottom: 72px;
+}
+
+.title {
+    color: #020402;
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nutricionist_card{
+    display: flex;
+    flex-direction: column;
+    max-width: 280px;
+
+    background-color: #61AB4A;
+    color: #FCFDFB;
+
+    border-radius: 8px;
+
+    padding: 16px;
+    margin-bottom: 32px;
+
+    box-shadow: 0px 0px 16px 8px rgba(2, 4, 2, .25);
+}
+
+.nutricionist_card>*{
+    margin: 0;
+}
+
+.nutricionist_image{
+    border-radius: 8px;
+} 
+
+.nutricionist_name{
+    font-weight: bold;
+}
+
+.CRN{
+    font-size: 0.8em;
+}

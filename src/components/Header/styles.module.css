@@ -1,0 +1,128 @@
+.header {
+    padding: 16px 32px !important;
+    background-color: #61AB4A;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.header-right{
+    position: relative;
+    display: inherit;
+    align-items: end;
+    justify-content: space-between;
+    width: calc(100%);
+}
+
+.search {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #3D550C;
+}
+
+.input {
+    padding: 10px 20px ;
+    border-radius: 5px;
+    border: none;
+
+    background-color: #F6F9F1;
+    width: 550px;
+    margin-right: 10px;
+}
+
+.searchButton {
+    padding: 10px 20px ;
+    border-radius: 5px;
+    border: none;
+    
+    background-color: #3D550C;
+    color: #F6F9F1;
+
+    cursor: pointer;
+}
+
+.loginButton {
+    background-color: #FCFDFB;
+    padding: 8px 18px;
+    
+    color: #61AB4A;
+    font-weight: bold;
+    
+    border: 2px solid #fcfdfb00;
+    border-radius: 10px;
+    
+    cursor: pointer;
+    text-decoration: none;
+
+    box-shadow: 0 0 16px 4px rgba(0, 0, 0, .25);
+    transition: 0.2s ease-in-out;
+}
+
+.loginButton:hover {
+    background-color: #61AB4A;
+    color: #FCFDFB;
+
+    border: 2px solid #FCFDFB;
+
+    transition: 0.2s ease-in-out;
+}
+
+.loginButton:active {
+    background-color: #42862e;
+}
+
+.userEmail {
+    color: #FCFDFB;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0;
+    margin-left: 32px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 80px;
+    right: 90px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0 0 0 0.1);
+    z-index: 1;
+  }
+
+.logoutButton {
+    background-color: #FCFDFB;
+    padding: 8px 18px;
+    
+    color: #61AB4A;
+    font-weight: bold;
+    
+    border: 2px solid #fcfdfb00;
+    border-radius: 10px;
+    
+    cursor: pointer;
+    text-decoration: none;
+
+    box-shadow: 0 0 16px 4px rgba(0, 0, 0, .25);
+    transition: 0.2s ease-in-out;
+}
+
+.logoutButton:hover {
+    background-color: #61AB4A;
+    color: #FCFDFB;
+
+    border: 2px solid #FCFDFB;
+
+    transition: 0.2s ease-in-out;
+}
+
+.logoutButton:active {
+    background-color: #42862e;
+}
+
+.userSection{
+    display: flex;
+    justify-content: flex-end;
+}

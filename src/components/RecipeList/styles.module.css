@@ -6,13 +6,15 @@
 }
 
 .title {
-    color: #81B622;
+    color: #020402;
     
     margin-top: 20px;
     margin-bottom: 20px;
 
-    font-size: 1.7em;
+    font-size: 1.5em;
+    font-weight: bold;
 }
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill minmax(200px 1fr));
@@ -20,17 +22,18 @@
 }
 
 .card {
-    background-color: #ECF87F;
+    background-color: #61AB4A;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0 0 0 0.1);
+    box-shadow: 0 0px 16px 8px rgba(2, 4, 2, 0.25);
     text-align: center;
 
     margin-bottom: 10px;
+    padding-bottom: 16px;
 }
 
 .card>*{
-    color: #3D550C;
+    color: #FCFDFB;
     font-size: 16px;
 }
 
@@ -52,13 +55,39 @@
 }
 
 .cardButton {
-    display: inline-block;
-    background-color: #3D550C;
-    color: #f4f4f4;
+    background-color: #FCFDFB;
     padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    
+    color: #61AB4A;
+    font-weight: bold;
+    
+    border: 2px solid #fcfdfb00;
+    border-radius: 8px;
+    
     cursor: pointer;
-    margin: 10px 0;
-    text-decoration: none /* Garante que o link não tenha sublinhado*/
+    text-decoration: none;
+
+    box-shadow: 0 0 16px 4px rgba(0, 0, 0, .25);
+}
+
+.cardButton:hover {
+    background-color: #61AB4A;
+    color: #FCFDFB;
+
+    border: 2px solid #FCFDFB;
+
+    transition: 0.2s ease-in-out;
+}
+
+.cardButton:active {
+    background-color: #42862e;
+    color: #FCFDFB;
+
+    border: 2px solid #FCFDFB;
+}
+
+.added_ingredients_empty{
+    font-weight: lighter;
+    font-style: italic;
+    margin: 0 0 16px 0;
 }
