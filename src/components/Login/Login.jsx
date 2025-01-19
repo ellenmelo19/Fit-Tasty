@@ -14,7 +14,7 @@ function Login({ onLogin }) {
   const [lastName, setLastName] = useState(''); 
   const [message, setMessage] = useState('');
   const [crn, setCrn] = useState(''); // Novo estado para CRN
-  const [photo, setPhoto] = useState(null); // Novo estado para Foto
+  const [photoUrl, setPhotoUrl] = useState(''); // Novo estado para URL da Foto
   const [phone, setPhone] = useState(''); // Novo estado para Telefone
 
   const navigate = useNavigate();
@@ -26,55 +26,79 @@ function Login({ onLogin }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (isRegistering) {
-      if (password !== confirmPassword) {
-        setMessage('As senhas não coincidem.');
-        return;
-      }
-      // Registro bem-sucedido (incluindo campos de nutricionista se selecionado)
-      const userData = {
-        firstName,
-        lastName,
-        email,
-        password,
-        isNutritionist,
-        crn,
-        photo,
-        phone,
-      };
-      // Envie userData ao backend aqui
-      setMessage('Registro realizado com sucesso!');
-      setTimeout(() => {
-        navigate('/'); // Redireciona para a tela principal
-      }, 1000);
-      
-    } else {
-      try {
-        const response = await fetch('http://localhost:3333/usuarios/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
+        if (password !== confirmPassword) {
+            setMessage('As senhas não coincidem.');
+            return;
+        }
+
+        if (isNutritionist && (!crn || !photoUrl || !phone)) {
+            setMessage('Por favor, preencha todos os campos de nutricionista.');
+            return;
+        }
+
+        const userData = {
+            firstName,
+            lastName,
+            email,
+            password,
+            isNutritionist,
+            crn,
+            photoUrl,
+            phone,
+        };
+
+        console.log('Tentativa de registro com:', userData);
+
+        const response = await fetch('http://localhost:3333/usuarios', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
         });
 
-        const user = await response.json();
-
         if (response.ok) {
-          setMessage('Login realizado com sucesso!');
-          onLogin(user);
-          setTimeout(() => {
-            navigate('/');
-          }, 1000);
+            setMessage('Registro realizado com sucesso!');
+            setTimeout(() => {
+                navigate('/'); // Redireciona para a tela principal
+            }, 1000);
         } else {
-          setMessage('Email ou senha inválidos.');
+            const errorResponse = await response.json();
+            setMessage(errorResponse.error || 'Erro ao realizar o registro.');
         }
-      } catch (error) {
-        console.error('Erro ao fazer login:', error);
-        setMessage('Ocorreu um erro. Por favor, tente novamente.');
-      }
+    } else {
+        // Login (mantém como está)
+        try {
+            console.log('Iniciando login...');
+            const response = await fetch('http://localhost:3333/usuarios/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const user = await response.json();
+
+            if (response.ok) {
+                setMessage('Login realizado com sucesso!');
+                onLogin(user);
+                setTimeout(() => {
+                    navigate('/');
+                }, 1000);
+            } else {
+                setMessage('Email ou senha inválidos.');
+            }
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            setMessage('Ocorreu um erro. Por favor, tente novamente.');
+        }
     }
-  };
+};
+
+
 
   const handleGoBack = () => {
     navigate('/');
@@ -163,17 +187,19 @@ function Login({ onLogin }) {
             <>
               <input
                 type="text"
-                placeholder="CRN"
+                placeholder="CRN (ex: CRN-X/XXXXXXXX)"
                 className={styles.input}
                 required={isNutritionist}
                 value={crn}
                 onChange={(e) => setCrn(e.target.value)}
               />
               <input
-                type="file"
+                type="text"
+                placeholder="URL da Foto"
                 className={styles.input}
                 required={isNutritionist}
-                onChange={(e) => setPhoto(e.target.files[0])}
+                value={photoUrl}
+                onChange={(e) => setPhotoUrl(e.target.value)}
               />
               <input
                 type="tel"
