@@ -6,52 +6,72 @@ import styles from './styles.module.css'
 
 function Login({ onLogin }) {
   const [isRegistering, setIsRegistering] = useState(false);
+  const [isNutritionist, setIsNutritionist] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState(''); 
   const [firstName, setFirstName] = useState(''); 
   const [lastName, setLastName] = useState(''); 
   const [message, setMessage] = useState('');
+  const [crn, setCrn] = useState(''); // Novo estado para CRN
+  const [photo, setPhoto] = useState(null); // Novo estado para Foto
+  const [phone, setPhone] = useState(''); // Novo estado para Telefone
 
   const navigate = useNavigate();
-
-  const mockUsers = [
-    { email: 'itamir@ufrn.edu.br', password: 'senha123', avatar: 'https://example.com/avatar1.jpg' },
-    { email: 'marquinhos@ufr.edu.br', password: 'abc123', avatar: 'https://example.com/avatar2.jpg' },
-    { email: 'rafa@ufrn.edu.br', password: 'web123', avatar: 'https://example.com/avatar3.jpg' },
-    { email: 'elen@ufrn.edu.br', password: 'senha123', avatar: 'https://example.com/avatar4.jpg' },
-  ];
 
   const toggleRegister = () => {
     setIsRegistering(!isRegistering);
     setMessage('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isRegistering) {
       if (password !== confirmPassword) {
         setMessage('As senhas não coincidem.');
         return;
       }
-      // Registro bem-sucedido
+      // Registro bem-sucedido (incluindo campos de nutricionista se selecionado)
+      const userData = {
+        firstName,
+        lastName,
+        email,
+        password,
+        isNutritionist,
+        crn,
+        photo,
+        phone,
+      };
+      // Envie userData ao backend aqui
       setMessage('Registro realizado com sucesso!');
       setTimeout(() => {
         navigate('/'); // Redireciona para a tela principal
       }, 1000);
       
     } else {
-      const user = mockUsers.find(
-        (user) => user.email === email && user.password === password
-      );
-      if (user) {
-        setMessage('Login realizado com sucesso!');
-        onLogin(user);
-        setTimeout(() => {
-          navigate('/');
-        }, 1000);
-      } else {
-        setMessage('Email ou senha inválidos.');
+      try {
+        const response = await fetch('http://localhost:3333/usuarios/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const user = await response.json();
+
+        if (response.ok) {
+          setMessage('Login realizado com sucesso!');
+          onLogin(user);
+          setTimeout(() => {
+            navigate('/');
+          }, 1000);
+        } else {
+          setMessage('Email ou senha inválidos.');
+        }
+      } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        setMessage('Ocorreu um erro. Por favor, tente novamente.');
       }
     }
   };
@@ -66,7 +86,7 @@ function Login({ onLogin }) {
         <button onClick={handleGoBack} className={styles.backButton}>
           <FaArrowLeft /> Voltar
         </button>
-        <h2>{isRegistering ? 'Login' : 'Bem-Vindo(a)'}</h2>
+        <h2>{isRegistering ? 'Registro' : 'Bem-Vindo(a)'}</h2>
         <p>
           {isRegistering
             ? 'Já tem uma conta? Conecte-se!'
@@ -127,6 +147,43 @@ function Login({ onLogin }) {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+          )}
+          {isRegistering && (
+            <div className={styles.checkboxContainer}>
+              <input
+                type="checkbox"
+                id="isNutritionist"
+                checked={isNutritionist}
+                onChange={(e) => setIsNutritionist(e.target.checked)}
+              />
+              <label htmlFor="isNutritionist">Sou nutricionista</label>
+            </div>
+          )}
+          {isNutritionist && (
+            <>
+              <input
+                type="text"
+                placeholder="CRN"
+                className={styles.input}
+                required={isNutritionist}
+                value={crn}
+                onChange={(e) => setCrn(e.target.value)}
+              />
+              <input
+                type="file"
+                className={styles.input}
+                required={isNutritionist}
+                onChange={(e) => setPhoto(e.target.files[0])}
+              />
+              <input
+                type="tel"
+                placeholder="Telefone para contato"
+                className={styles.input}
+                required={isNutritionist}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </>
           )}
           <button type="submit" className={styles.loginButton}>
             {isRegistering ? 'Cadastre-se' : 'Entrar'}
