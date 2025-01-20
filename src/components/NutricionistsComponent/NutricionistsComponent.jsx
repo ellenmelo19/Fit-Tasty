@@ -25,6 +25,8 @@ export default function NutricionistsComponent() {
                     <img className={`${styles.nutricionist_image}`} src={nutritionist.photoUrl} alt={`Foto de ${nutritionist.firstName} ${nutritionist.lastName}`} />
                     <p className={`${styles.nutricionist_name}`}>{nutritionist.firstName} {nutritionist.lastName}</p>
                     <p className={`${styles.CRN}`}>{nutritionist.crn}</p>
+                    <p className={`${styles.email}`}>{nutritionist.email}</p>
+                    <p className={`${styles.phone}`}>{nutritionist.phone}</p>
                 </div>
             </div>
         );
