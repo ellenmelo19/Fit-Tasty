@@ -35,7 +35,9 @@ function App() {
         />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/addrecipe" element={<AddRecipeComponent/>} />
-        <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/recipe/:id_recipe" element={<RecipeDetails />} />
+
       </Routes>
     </Router>
   );

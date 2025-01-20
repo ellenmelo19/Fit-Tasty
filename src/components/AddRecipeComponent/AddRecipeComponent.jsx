@@ -28,7 +28,8 @@ export default function AddRecipeComponent() {
             calories,
             prepTime
         };
-
+        
+        console.log(recipeData) 
         try {
             const response = await fetch('http://localhost:3333/recipes', {
                 method: 'POST',
