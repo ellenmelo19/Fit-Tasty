@@ -9,7 +9,7 @@ function RecipeList({ recipeSearchResult, isSearching }) {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/recipes');
+        const response = await fetch('http://localhost:3333/recipes/search', {method: 'POST',});
         const data = await response.json();
         setRecipes(data);
       } catch (error) {

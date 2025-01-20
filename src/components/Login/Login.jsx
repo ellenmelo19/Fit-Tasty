@@ -84,6 +84,7 @@ function Login({ onLogin }) {
 
             if (response.ok) {
                 setMessage('Login realizado com sucesso!');
+                localStorage.setItem("login", JSON.stringify(user));
                 onLogin(user);
                 setTimeout(() => {
                     navigate('/');

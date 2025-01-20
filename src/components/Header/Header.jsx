@@ -31,7 +31,12 @@ function Header({ user, onLogout }) {
         <div className={`col-6 ${styles.userSection}`}>
           {user ? (
             <div className='d-flex align-items-center'>
-              <button className={styles.loginButton} onClick={() => handleClick("addrecipe")}>Cadastrar nova receita</button>
+              {
+                user.isNutritionist ?
+                  <button className={styles.loginButton} onClick={() => handleClick("addrecipe")}>Cadastrar nova receita</button>
+                :
+                <></>
+              }
               <p 
                 className={styles.userEmail}
                 onClick={() => setDropdownVisible(!isDropdownVisible)} // Toggle dropdown

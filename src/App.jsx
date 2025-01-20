@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
@@ -24,7 +24,16 @@ function App() {
 
   const handleLogout = () => {
     setUser(null); // Limpa o estado do usuário para realizar o logout
+    localStorage.removeItem("login");
   };
+
+  useEffect(() =>{
+    const user = JSON.parse(localStorage.getItem("login"));
+    if(user){
+      console.log(user)
+      handleLogin(user);
+    }
+  }, [])
 
   return (
     <Router>
