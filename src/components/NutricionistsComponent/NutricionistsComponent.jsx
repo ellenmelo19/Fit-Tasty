@@ -1,47 +1,50 @@
-import React from "react";
-import styles from './styles.module.css'
+import React, { useEffect, useState } from "react";
+import styles from './styles.module.css';
 
-import nutricionist from './../../assets/Nutricionists/Nutricionista.png'
-import nutricinonistsList from "../../service/nutricionistList";
+export default function NutricionistsComponent() {
+    const [nutritionists, setNutritionists] = useState([]);
 
-export default function NutricionistsComponent(){
-    const NutricionistCard = ({nutricionist}) =>{
-        return(
+    useEffect(() => {
+        const fetchNutritionists = async () => {
+            try {
+                const response = await fetch('http://localhost:3333/nutritionists');
+                const data = await response.json();
+                setNutritionists(data);
+            } catch (error) {
+                console.error('Erro ao buscar nutricionistas:', error);
+            }
+        };
+
+        fetchNutritionists();
+    }, []);
+
+    const NutricionistCard = ({ nutritionist }) => {
+        return (
             <div className="col-4">
                 <div className={`${styles.nutricionist_card}`}>
-                    <img className={`${styles.nutricionist_image}`} src={nutricionist.image} alt={`Foto de ${nutricionist.name}`} />
-                    <p className={`${styles.nutricionist_name}`}>{nutricionist.name}</p>
-                    <p className={`${styles.CRN}`}>{nutricionist.CRN}</p>
+                    <img className={`${styles.nutricionist_image}`} src={nutritionist.photoUrl} alt={`Foto de ${nutritionist.firstName} ${nutritionist.lastName}`} />
+                    <p className={`${styles.nutricionist_name}`}>{nutritionist.firstName} {nutritionist.lastName}</p>
+                    <p className={`${styles.CRN}`}>{nutritionist.crn}</p>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
-    return(
+    return (
         <section className={`container ${styles.nutricionists}`}>
             <div className="row">
                 <div className="col">
                     <p className={styles.title}>Conheça nossos nutricionistas cadastrados</p>
                     <div className={`row`}>
-                        {
-                            nutricinonistsList.map((_nutricionist, key) =>{
-                                return (
-                                    <NutricionistCard
-                                        key={key}
-                                        nutricionist={
-                                            {
-                                                image: _nutricionist.image,
-                                                name: _nutricionist.name,
-                                                CRN: _nutricionist.CRN
-                                            }
-                                        }
-                                    />
-                                )
-                            })
-                        }
+                        {nutritionists.map((nutritionist, key) => (
+                            <NutricionistCard
+                                key={key}
+                                nutritionist={nutritionist}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
         </section>
-    )
+    );
 }
